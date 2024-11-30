@@ -203,7 +203,7 @@ const IntroForm: React.FC<IntroFormProps> = ({ onSubmit }) => {
         console.log(values);
 
         setTimeout(() => {
-          alert("Form Submitted Successfully!");
+          // alert("Form Submitted Successfully!");
           onSubmit(values);
           setSubmitting(false);
         }, 400);

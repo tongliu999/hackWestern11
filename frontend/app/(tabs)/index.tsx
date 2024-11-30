@@ -6,6 +6,7 @@ import * as Font from "expo-font"; // Expo Font API for loading custom fonts
 import { Image, Platform, Button, Alert } from "react-native";
 import AsyncStorage from "@react-native-async-storage/async-storage";
 
+import Feather from "@expo/vector-icons/Feather";
 import { HelloWave } from "@/components/HelloWave";
 import ParallaxScrollView from "@/components/ParallaxScrollView";
 import { ThemedText } from "@/components/ThemedText";
@@ -132,6 +133,7 @@ const styles = StyleSheet.create({
     left: 0,
     width: "100%",
     height: "100%",
+    opacity: 0.3,
   },
   navbar: {
     position: "absolute",
