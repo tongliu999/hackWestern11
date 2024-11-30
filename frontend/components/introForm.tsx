@@ -70,13 +70,13 @@ const IntroForm: React.FC<IntroFormProps> = ({ onSubmit }) => {
       setPage(page - 1);
     }
   };
-
+  //style={styles.pageTitle}
   const renderPage = (formik: any) => {
     switch (page) {
       case 0:
         return (
           <View style={styles.pageContainer}>
-            <Text style={styles.pageTitle}>Personal Information</Text>
+            <Text>Personal Information</Text>
             <TextInput
               style={[
                 styles.input,
