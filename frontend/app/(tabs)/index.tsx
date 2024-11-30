@@ -51,14 +51,8 @@ export default function HomeScreen() {
           autoPlay
           loop
           style={styles.backgroundAnimation}
-    <ParallaxScrollView
-      headerBackgroundColor={{ light: "#A1CEDC", dark: "#1D3D47" }}
-      headerImage={
-        <Image
-          source={require("@/assets/images/flow.png")}
-          style={styles.reactLogo}
-        />
-      </View>
+  />
+      // </View>
 
       <View style={styles.navbar}>
         <TouchableOpacity style={styles.logoContainer}>
@@ -105,52 +99,11 @@ export default function HomeScreen() {
         <TouchableOpacity onPress={handlePress} style={styles.widget}>
             <Text>TEST</Text>
         </TouchableOpacity>
+        <Button title="Clear AsyncStorage" onPress={clearAsyncStorage} />
       </View>
     </View>
-      }
-    >
-      <ThemedView style={styles.titleContainer}>
-        <ThemedText type="title">Welcome!!!</ThemedText>
-        <HelloWave />
-      </ThemedView>
-      <ThemedView style={styles.stepContainer}>
-        <ThemedText type="subtitle">Step 1: Try it</ThemedText>
-        <ThemedText>
-          Edit{" "}
-          <ThemedText type="defaultSemiBold">app/(tabs)/index.tsx</ThemedText>{" "}
-          to see changes. Press{" "}
-          <ThemedText type="defaultSemiBold">
-            {Platform.select({
-              ios: "cmd + d",
-              android: "cmd + m",
-              web: "F12",
-            })}
-          </ThemedText>{" "}
-          to open developer tools.
-        </ThemedText>
-      </ThemedView>
-      <ThemedView style={styles.stepContainer}>
-        <ThemedText type="subtitle">Step 2: Explore</ThemedText>
-        <ThemedText>
-          Tap the Explore tab to learn more about what's included in this
-          starter app.
-        </ThemedText>
-      </ThemedView>
-      <ThemedView style={styles.stepContainer}>
-        <ThemedText type="subtitle">Step 3: Get a fresh start</ThemedText>
-        <ThemedText>
-          When you're ready, run{" "}
-          <ThemedText type="defaultSemiBold">npm run reset-project</ThemedText>{" "}
-          to get a fresh <ThemedText type="defaultSemiBold">app</ThemedText>{" "}
-          directory. This will move the current{" "}
-          <ThemedText type="defaultSemiBold">app</ThemedText> to{" "}
-          <ThemedText type="defaultSemiBold">app-example</ThemedText>.
-        </ThemedText>
-      </ThemedView>
-      <ThemedView style={styles.stepContainer}>
-        <Button title="Clear AsyncStorage" onPress={clearAsyncStorage} />
-      </ThemedView>
-    </ParallaxScrollView>
+      
+    
   );
 }
 
@@ -266,10 +219,6 @@ const styles = StyleSheet.create({
     alignItems: 'center',
     justifyContent: 'space-between',
     width: '100%',
-  titleContainer: {
-    flexDirection: "row",
-    alignItems: "center",
-    gap: 8,
   },
   icon: {
     marginLeft: 10,
@@ -294,12 +243,6 @@ const styles = StyleSheet.create({
     justifyContent: 'space-between',
     flexDirection: 'row',
   }
-  reactLogo: {
-    height: 178,
-    width: 290,
-    bottom: 0,
-    left: 0,
-    position: "absolute",
-  },
+ 
 });
 
