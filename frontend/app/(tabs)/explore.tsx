@@ -9,6 +9,7 @@ import {
 
 import Header from "@/components/header";
 import Feather from "@expo/vector-icons/Feather";
+import ClickableTag from "@/components/ClickableTag";
 
 export default function TabTwoScreen() {
   const handleRightIconPress = () => {
@@ -34,6 +35,102 @@ export default function TabTwoScreen() {
               <Feather name="chevron-right" />
             </View>
           </View>
+
+          <View>
+            <Image source={require("@/assets/images/graph.png")} />
+          </View>
+
+          <View style={styles.divider} />
+
+          <View style={styles.reminderWidgetsContainer}>
+            <View style={{ width: 168 }}>
+              <View style={[styles.widget]}>
+                <Text style={styles.reminderWidgetText}>
+                  <Text style={styles.widgetMoneyText}>91%</Text>
+                  <Text
+                    style={{
+                      fontSize: 24,
+                      fontFamily: "space-mono",
+                    }}
+                  >
+                    {" "}
+                    consistent{" "}
+                  </Text>
+                  <View style={[styles.textContainer]}>
+                    <Text
+                      style={{
+                        fontSize: 14,
+                      }}
+                    >
+                      You only went over{" "}
+                    </Text>
+                  </View>
+                  <View style={[styles.textContainer]}>
+                    <Text
+                      style={{
+                        fontSize: 14,
+                      }}
+                    >
+                      the{" "}
+                    </Text>
+                    <ClickableTag style={{ backgroundColor: "#DAD8F4" }}>
+                      <Text style={{ color: "#525278" }}>non-essentials</Text>
+                    </ClickableTag>
+                  </View>
+                  <View style={[styles.textContainer]}>
+                    <Text
+                      style={{
+                        fontSize: 14,
+                      }}
+                    >
+                      limit by $17.
+                    </Text>
+                  </View>
+                </Text>
+              </View>
+            </View>
+            <View style={{ width: 190, marginLeft: 10 }}>
+              <View style={[styles.widget, styles.reminderWidget]}>
+                <Text style={styles.reminderWidgetText}>
+                  <Text style={styles.widgetMoneyText}>$112</Text>
+                  <Text
+                    style={{
+                      fontSize: 24,
+                      fontFamily: "space-mono",
+                    }}
+                  >
+                    {" "}
+                    on Amazon{" "}
+                  </Text>
+                  <View style={[styles.textContainer]}>
+                    <Text
+                      style={{
+                        fontSize: 14,
+                      }}
+                    >
+                      It's your leading{" "}
+                    </Text>
+                  </View>
+                  <View style={[styles.textContainer]}>
+                    <ClickableTag style={{ backgroundColor: "#DAD8F4" }}>
+                      <Text style={{ color: "#525278" }}>non-essentials</Text>
+                    </ClickableTag>
+                  </View>
+                  <View style={[styles.textContainer]}>
+                    <Text
+                      style={{
+                        fontSize: 14,
+                      }}
+                    >
+                      monthly expense.
+                    </Text>
+                  </View>
+                </Text>
+              </View>
+            </View>
+          </View>
+
+          <View style={styles.divider} />
         </View>
       </ScrollView>
     </View>
@@ -63,7 +160,7 @@ const styles = StyleSheet.create({
     alignItems: "center",
     justifyContent: "center",
     padding: 16,
-    backgroundColor: "#fff",
+    backgroundColor: "#FFF9F2",
   },
   titleText: {
     fontSize: 16,
@@ -90,6 +187,77 @@ const styles = StyleSheet.create({
     fontFamily: "Bricolage Grotesque",
     color: "#1e1e2d",
     textAlign: "center",
+  },
+
+  divider: {
+    height: 1,
+    backgroundColor: "#E8E8E8",
+    marginVertical: 10,
+    width: "100%",
+  },
+
+  reminderWidgetsContainer: {
+    flexDirection: "row",
+    justifyContent: "flex-start", // Ensures widgets are spaced equally
+    alignItems: "center",
+    // marginLeft: 10,
+    marginTop: 10,
+    flexWrap: "nowrap",
+  },
+  reminderText: {
+    fontSize: 24,
+    color: "#1E1E2D",
+    fontFamily: "bricolage-grotesque",
+    fontWeight: "bold",
+    alignItems: "center",
+    // marginLeft: 20, // Ensures there's a margin before the text
+  },
+  widgetText: {
+    fontFamily: "bricolage-grotesque",
+    fontSize: 12,
+    alignItems: "center",
+  },
+  reminderWidget: {
+    flex: 1,
+    marginHorizontal: 5,
+    flexDirection: "row", // Ensure the content is aligned horizontally
+    justifyContent: "space-between", // Distribute space evenly between the money and text
+    alignItems: "center", // Vertically center the text and amount
+  },
+  reminderWidgetText: {
+    fontSize: 24,
+    color: "#1E1E2D",
+    fontFamily: "bricolage-grotesque",
+    flexDirection: "row", // Ensure the text inside is aligned in a row
+    alignItems: "center", // Vertically center the text and amount
+  },
+  textContainer: {
+    flexDirection: "row",
+    justifyContent: "flex-start",
+    alignItems: "center",
+    fontFamily: "bricolage-grotesque",
+    flexShrink: 0,
+    marginTop: 10,
+  },
+  widgetMoneyText: {
+    fontFamily: "bricolage-grotesque",
+    fontWeight: "bold",
+    fontSize: 24,
+  },
+  widget: {
+    backgroundColor: "#FFF9F2",
+    paddingVertical: 10,
+    paddingHorizontal: 15,
+    borderRadius: 12,
+    alignItems: "flex-start",
+    justifyContent: "flex-start",
+    elevation: 5,
+    width: "100%",
+    marginBottom: 10,
+  },
+  text: {
+    fontSize: 18,
+    color: "#333",
   },
 });
 
