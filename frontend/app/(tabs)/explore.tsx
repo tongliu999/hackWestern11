@@ -135,10 +135,19 @@ export default function TabTwoScreen() {
 
           <View style={styles.divider} />
 
-          <View>
+          <View style={{ marginTop: 10, marginBottom: 10 }}>
             <Image
               source={require("@/assets/images/graph2.png")}
               style={{ width: 350, height: 180 }}
+            />
+          </View>
+
+          <View style={styles.divider} />
+
+          <View style={{ marginTop: 20 }}>
+            <Image
+              source={require("@/assets/images/widget.png")}
+              style={{ width: 350, height: 120 }}
             />
           </View>
         </View>

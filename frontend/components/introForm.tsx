@@ -389,14 +389,21 @@ const IntroForm: React.FC<IntroFormProps> = ({ onSubmit }) => {
             <Text style={styles.pageTitle}>
               Please provide your fixed expenses.
             </Text>
+            <Text style={{ marginTop: -10 }}>
+              Stick with the basics, like rent, insurance, utilities, and
+              anything else that you expect to be routinely charged for.
+            </Text>
+            <Text style={{ marginTop: 10 }}>
+              P.S. Please don’t add subscriptions. We’ll take care of those 😉
+            </Text>
             <FontAwesome
               name="dollar"
               size={15}
               color="black"
-              style={{ position: "absolute", marginTop: 194, marginLeft: 30 }}
+              style={{ position: "absolute", marginTop: 260, marginLeft: 30 }}
             />
             <TextInput
-              style={[styles.input, { paddingLeft: 20 }]}
+              style={[styles.input, { paddingLeft: 20, marginTop: 10 }]}
               placeholder="Your fixed expenses"
               value={formik.values.occupation}
               onChangeText={formik.handleChange("occupation")}
@@ -419,15 +426,19 @@ const IntroForm: React.FC<IntroFormProps> = ({ onSubmit }) => {
             <Text style={styles.pageTitle}>
               Please provide your income and/or assets.
             </Text>
+            <Text style={{ marginTop: -10 }}>
+              Add any relevant income, assets, grants/loans or cash balances
+              that can contribute to your budgeting plan.
+            </Text>
             <FontAwesome
               name="dollar"
               size={15}
               color="black"
-              style={{ position: "absolute", marginTop: 194, marginLeft: 30 }}
+              style={{ position: "absolute", marginTop: 221, marginLeft: 30 }}
             />
             <TextInput
-              style={[styles.input, { paddingLeft: 20 }]}
-              placeholder="Your Interests"
+              style={[styles.input, { paddingLeft: 20, marginTop: 10 }]}
+              placeholder="Your Income"
               value={formik.values.interests}
               onChangeText={formik.handleChange("interests")}
               onBlur={formik.handleBlur("interests")}
@@ -450,7 +461,10 @@ const IntroForm: React.FC<IntroFormProps> = ({ onSubmit }) => {
             <Text style={styles.pageTitle}>
               Link your bank so you never have to track an expense again.
             </Text>
-            <Text>Please review your information</Text>
+            <Text style={{ marginTop: -10 }}>
+              We use the same technology and security measures as
+              industry-leaders, such as Plaid.
+            </Text>
 
             <TextInput
               style={[styles.input, { marginTop: 10 }]}

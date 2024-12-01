@@ -13,7 +13,7 @@ import { LinearGradient } from "expo-linear-gradient";
 import Header from "@/components/header";
 import SubscriptionInsight from "@/components/subscriptionInsight";
 import { useState } from "react";
-import axios from 'axios';
+import axios from "axios";
 
 export default function SubscriptionsScreen() {
   const handleRightIconPress = () => {
@@ -29,29 +29,33 @@ export default function SubscriptionsScreen() {
     setIsVisible(!isVisible);
     console.log(isVisible);
   };
-  
+
   const sendPostRequest = async () => {
-    const url = '';
-    
+    const url =
+      "https://general-runtime.voiceflow.com/state/user/tong/interact";
+
     const headers = {
-      'Content-Type': 'application/json',
-      Authorization: '',
-      versionID: 'production',
-      Accept: 'application/json',
+      "Content-Type": "application/json",
+      Authorization: "VF.DM.674b2d2b7151fc8271b56928.I31WIKaUAwb6uaG6",
+      versionID: "production",
+      Accept: "application/json",
     };
-  
+
     const body = {
       request: {
-        type: 'text',
+        type: "text",
         payload: `I'd like to change my subscription plan from ${company} to the ${planName}.`,
       },
     };
-  
+
     try {
       const response = await axios.post(url, body, { headers });
-      console.log('Response:', response.data);
+      console.log("Response:", response.data);
     } catch (error) {
-      console.error('Error:', error.response ? error.response.data : error.message);
+      console.error(
+        "Error:",
+        error.response ? error.response.data : error.message
+      );
     }
   };
 
@@ -66,8 +70,7 @@ export default function SubscriptionsScreen() {
   const handleYesPress = () => {
     sendPostRequest();
     toggleModal();
-  }
-  
+  };
 
   return (
     <View style={styles.parentContainer}>
@@ -135,13 +138,13 @@ export default function SubscriptionsScreen() {
             iconBackgroundColor="#EEECDA"
           />
           <SubscriptionInsight
-            title="Skip the Dishes"
+            title="SkipTheDishes"
             amount="$9.99"
             subtitle1="Skip+"
             subtitle2="Monthly"
             description="Consider potentially redundant subscriptions between Skip+ and UberOne."
             iconSource="remove-circle-outline"
-            onPress={() => handleCardPress("Skip the Dishes", "skip+")}
+            onPress={() => handleCardPress("SkipTheDishes", "skip+")}
             iconBackgroundColor="#EEECDA"
           />
           <SubscriptionInsight
@@ -202,30 +205,40 @@ export default function SubscriptionsScreen() {
           />
         </View>
 
-        <View style={{ flex: 1, justifyContent: 'center', alignItems: 'center'}}>
-        <Modal
-          visible={isVisible}
-          transparent={true}
-          animationType="slide"
-          onRequestClose={toggleModal}
+        <View
+          style={{ flex: 1, justifyContent: "center", alignItems: "center" }}
         >
-          <View style={styles.modalOverlay}>
-            <View style={styles.modalContainer}>
-                <Text style={{textAlign: "left"}}>
-                  <Text style={{fontWeight: "bold"}}>Are you sure </Text>that you want to convert your standard monthly subscription into an annual student subscription?
+          <Modal
+            visible={isVisible}
+            transparent={true}
+            animationType="slide"
+            onRequestClose={toggleModal}
+          >
+            <View style={styles.modalOverlay}>
+              <View style={styles.modalContainer}>
+                <Text style={{ textAlign: "left" }}>
+                  <Text style={{ fontWeight: "bold" }}>Are you sure </Text>that
+                  you want to convert your standard monthly subscription into an
+                  annual student subscription?
                 </Text>
-              <View style={styles.buttonContainer}>
-                <TouchableOpacity onPress={toggleModal} style={styles.noButton}>
-                  <Text>NO</Text>
-                </TouchableOpacity>
-                <TouchableOpacity onPress={handleYesPress} style={styles.yesButton}>
-                  <Text style={{color: "white"}}>YES</Text>
-                </TouchableOpacity>
+                <View style={styles.buttonContainer}>
+                  <TouchableOpacity
+                    onPress={toggleModal}
+                    style={styles.noButton}
+                  >
+                    <Text>NO</Text>
+                  </TouchableOpacity>
+                  <TouchableOpacity
+                    onPress={handleYesPress}
+                    style={styles.yesButton}
+                  >
+                    <Text style={{ color: "white" }}>YES</Text>
+                  </TouchableOpacity>
+                </View>
               </View>
             </View>
-          </View>
-        </Modal>
-      </View>
+          </Modal>
+        </View>
       </ScrollView>
     </View>
   );
@@ -319,42 +332,42 @@ const styles = StyleSheet.create({
   },
   modalOverlay: {
     flex: 1,
-    justifyContent: 'center',
-    alignItems: 'center',
-    backgroundColor: 'rgba(0, 0, 0, 0.5)',
+    justifyContent: "center",
+    alignItems: "center",
+    backgroundColor: "rgba(0, 0, 0, 0.5)",
   },
   modalContainer: {
     width: 300,
     height: 165,
-    backgroundColor: '#FFF9F2',
+    backgroundColor: "#FFF9F2",
     borderRadius: 20,
     borderWidth: 2,
-    borderColor: '#e6e6e6',
+    borderColor: "#e6e6e6",
     padding: 20,
-    justifyContent: 'flex-start',
-    alignItems: 'stretch',
+    justifyContent: "flex-start",
+    alignItems: "stretch",
   },
   buttonContainer: {
-    marginTop: 'auto', // Pushes the buttons to the bottom of the modal
-    flexDirection: 'row',
-    width: '100%',
+    marginTop: "auto", // Pushes the buttons to the bottom of the modal
+    flexDirection: "row",
+    width: "100%",
     marginLeft: -20,
     marginBottom: -22,
   },
   noButton: {
     width: 150,
     height: 49,
-    backgroundColor: '#EFEFEF',
-    justifyContent: 'center',
-    alignItems: 'center',
+    backgroundColor: "#EFEFEF",
+    justifyContent: "center",
+    alignItems: "center",
     borderBottomLeftRadius: 20,
   },
   yesButton: {
     width: 150,
     height: 49,
-    backgroundColor: '#988269',
-    justifyContent: 'center',
-    alignItems: 'center',
+    backgroundColor: "#988269",
+    justifyContent: "center",
+    alignItems: "center",
     borderBottomRightRadius: 20,
   },
 });
