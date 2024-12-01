@@ -181,10 +181,11 @@ const IntroForm: React.FC<IntroFormProps> = ({ onSubmit }) => {
           );
         case 4:
           formik.setFieldTouched("occupation", true);
-          formik.setFieldTouched("interests", true);
-          return !formik.errors.interests && !formik.errors.occupation;
+
+          return !formik.errors.occupation;
         case 5:
-          return true;
+          formik.setFieldTouched("interests", true);
+          return !formik.errors.interests;
         case 6:
           formik.setFieldTouched("bank", true);
           return !formik.errors.bank;
@@ -357,7 +358,7 @@ const IntroForm: React.FC<IntroFormProps> = ({ onSubmit }) => {
             </Text>
             <TextInput
               style={styles.input}
-              placeholder="Your Goal Achieve"
+              placeholder="Your Achievement Date"
               value={formik.values.goalAchieve.toString()}
               onChangeText={formik.handleChange("goalAchieve")}
               onBlur={formik.handleBlur("goalAchieve")}
@@ -514,28 +515,28 @@ const IntroForm: React.FC<IntroFormProps> = ({ onSubmit }) => {
 
                   <TouchableOpacity
                     style={styles.button}
-                    onPress={() => {
-                      // Validate all fields before submission
-                      formik.validateForm().then((errors) => {
-                        if (Object.keys(errors).length === 0) {
-                          console.log("Submitting form...");
-                          formik.submitForm();
-                        } else {
-                          // Optionally, mark all fields as touched to show errors
-                          console.log("issue!", Object.keys(errors));
-                          formik.setTouched(
-                            Object.keys(errors).reduce((acc, key) => {
-                              acc[key] = true;
-                              return acc;
-                            }, {})
-                          );
-                        }
-                      });
-                    }}
                     // onPress={() => {
-                    //   console.log("hi");
-                    //   formik.handleSubmit();
+                    //   // Validate all fields before submission
+                    //   formik.validateForm().then((errors) => {
+                    //     if (Object.keys(errors).length === 0) {
+                    //       console.log("Submitting form...");
+                    //       formik.submitForm();
+                    //     } else {
+                    //       // Optionally, mark all fields as touched to show errors
+                    //       console.log("issue!", Object.keys(errors));
+                    //       formik.setTouched(
+                    //         Object.keys(errors).reduce((acc, key) => {
+                    //           acc[key] = true;
+                    //           return acc;
+                    //         }, {})
+                    //       );
+                    //     }
+                    //   });
                     // }}
+                    onPress={() => {
+                      console.log("hi");
+                      formik.handleSubmit();
+                    }}
                   >
                     <Text style={styles.buttonText}>
                       {formik.isSubmitting ? "Submitting..." : "Submit"}
