@@ -32,7 +32,7 @@ export default function BudgetScreen() {
         showsVerticalScrollIndicator={false}
       >
         <View style={styles.container}>
-          <View style={styles.buttonContainer}>
+          {/* <View style={styles.buttonContainer}>
             <LinearGradient
               colors={["#FFF9F2", "#E8E2DB"]}
               style={styles.button}
@@ -49,9 +49,19 @@ export default function BudgetScreen() {
             >
               <Text style={styles.text}>Add Money</Text>
             </LinearGradient>
-          </View>
-          <View style={styles.titleContainer}>
-            <Text style={styles.header}>Goals</Text>
+          </View> */}
+          <View
+            style={[
+              styles.titleContainer,
+              {
+                flexDirection: "row",
+                justifyContent: "space-between",
+                alignItems: "center",
+              },
+            ]}
+          >
+            <Text style={styles.header}>Budget Plan</Text>
+            <Feather name="edit-3" size={16} color="#1e1e2d" />
           </View>
           <View
             style={{
@@ -264,7 +274,12 @@ const styles = StyleSheet.create({
     justifyContent: "flex-start",
     alignItems: "flex-start",
     backgroundColor: "#FFF9F2",
-    marginTop: 40,
+    marginTop: 20,
+  },
+  buttonsContainer: {
+    flexDirection: "row",
+    alignItems: "center",
+    gap: 10,
   },
   header: {
     fontSize: 24,

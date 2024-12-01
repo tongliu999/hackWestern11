@@ -41,7 +41,7 @@ export default function SubscriptionsScreen() {
               styles.summaryContainer,
               { marginTop: 20, width: "100%", overflow: "hidden" },
             ]}
-            colors={["#fff", "#E9E9E9"]}
+            colors={["#FFF9F2", "#E9E9E9"]}
             start={{ x: 0, y: 0 }}
             end={{ x: 1, y: 0 }}
           >
@@ -95,6 +95,52 @@ export default function SubscriptionsScreen() {
             subtitle1="Standard"
             subtitle2="Monthly"
             description="Are you still using Peloton regularly? This is your second most expensive subscription. "
+            iconSource="remove-circle-outline"
+            onPress={() => console.log("More pressed!")}
+            iconBackgroundColor="#EEECDA"
+          />
+
+          <View
+            style={[styles.titleContainer, { marginBottom: 20, marginTop: 40 }]}
+          >
+            <Text style={styles.header}>Your Subscriptions</Text>
+          </View>
+          <SubscriptionInsight
+            title="Peloton"
+            amount="$30.00"
+            subtitle1="App+"
+            subtitle2="Monthly"
+            description="Billing occurs today."
+            iconSource="checkmark-circle-outline"
+            onPress={() => console.log("More pressed!")}
+            iconBackgroundColor="#ccf0d6"
+          />
+          <SubscriptionInsight
+            title="Goodlife Fitness"
+            amount="$70.00"
+            subtitle1="Basic Plan"
+            subtitle2="Monthly"
+            description="Next Billing is tomorrow."
+            iconSource="checkmark-circle-outline"
+            onPress={() => console.log("More pressed!")}
+            iconBackgroundColor="#ccf0d6"
+          />
+          <SubscriptionInsight
+            title="Adobe"
+            amount="$60.00"
+            subtitle1=" Creative Cloud Trial"
+            subtitle2="Monthly"
+            description="Trial ends and billing occurs in 7 days."
+            iconSource="checkmark-circle-outline"
+            onPress={() => console.log("More pressed!")}
+            iconBackgroundColor="#ccf0d6"
+          />
+          <SubscriptionInsight
+            title="Uber"
+            amount="$9.99"
+            subtitle1="Uber One"
+            subtitle2="Monthly"
+            description="Next Billing in 3 days."
             iconSource="remove-circle-outline"
             onPress={() => console.log("More pressed!")}
             iconBackgroundColor="#EEECDA"
@@ -162,7 +208,7 @@ const styles = StyleSheet.create({
   summaryContainer: {
     flex: 1,
     width: "100%",
-    justifyContent: "center",
+    justifyContent: "flex-start",
     alignItems: "center",
     paddingVertical: 20,
     backgroundColor: "transparent",
