@@ -37,10 +37,13 @@ export default function TabTwoScreen() {
           </View>
 
           <View>
-            <Image source={require("@/assets/images/graph.png")} />
+            <Image
+              source={require("@/assets/images/graph.png")}
+              style={{ width: 350, height: 180 }}
+            />
           </View>
 
-          <View style={styles.divider} />
+          <View style={[styles.divider, { marginTop: 40 }]} />
 
           <View style={styles.reminderWidgetsContainer}>
             <View style={{ width: 168 }}>
@@ -131,6 +134,13 @@ export default function TabTwoScreen() {
           </View>
 
           <View style={styles.divider} />
+
+          <View>
+            <Image
+              source={require("@/assets/images/graph2.png")}
+              style={{ width: 350, height: 180 }}
+            />
+          </View>
         </View>
       </ScrollView>
     </View>

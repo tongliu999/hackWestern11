@@ -1,4 +1,4 @@
-import { StyleSheet, Image, ScrollView, Text, View } from "react-native";
+import { StyleSheet, Alert, ScrollView, Text, View } from "react-native";
 
 import { LinearGradient } from "expo-linear-gradient";
 
@@ -9,10 +9,21 @@ import ProgressBar from "@/components/progressBar";
 import ClickableTag from "@/components/ClickableTag";
 import FontAwesome6 from "@expo/vector-icons/FontAwesome6";
 import Feather from "@expo/vector-icons/Feather";
+import AsyncStorage from "@react-native-async-storage/async-storage";
 
 export default function BudgetScreen() {
   const handleRightIconPress = () => {
     console.log("Right icon clicked!");
+    clearAsyncStorage();
+  };
+
+  const clearAsyncStorage = async () => {
+    try {
+      await AsyncStorage.clear();
+      Alert.alert("Success", "AsyncStorage has been cleared.");
+    } catch (e) {
+      Alert.alert("Error", "Failed to clear AsyncStorage.");
+    }
   };
 
   const currentValue1 = 2000;
