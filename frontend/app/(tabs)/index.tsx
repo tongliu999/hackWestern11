@@ -11,7 +11,7 @@ import {
 } from "react-native";
 import LottieView from "lottie-react-native";
 import Icon from "react-native-vector-icons/FontAwesome";
-import * as Font from "expo-font"; // Expo Font API for loading custom fonts
+import * as Font from "expo-font";
 import AsyncStorage from "@react-native-async-storage/async-storage";
 import ClickableTag from "../../components/ClickableTag";
 import { LinearGradient } from "expo-linear-gradient";
@@ -75,6 +75,7 @@ export default function HomeScreen() {
 
   const handleRightIconPress = () => {
     console.log("Right icon clicked!");
+    clearAsyncStorage(); // for now lol
   };
 
   const handlePress = () => {
@@ -93,23 +94,21 @@ export default function HomeScreen() {
   };
 
   return (
-    <ScrollView style={styles.scrollViewContainer}>
-      {/* Wrap content with ScrollView */}
-      <View style={styles.container}>
-        <View style={styles.lottieContainer}>
-          <LottieView
-            source={require("../../assets/backgrounds/lava-lamp-bg.json")}
-            autoPlay
-            loop
-            style={styles.backgroundAnimation}
-          />
-        </View>
-
-        <Header
-          logoSource={require("@/assets/images/flow.png")}
-          onRightIconPress={handleRightIconPress}
+    <View style={styles.container}>
+      <View style={styles.lottieContainer}>
+        <LottieView
+          source={require("../../assets/backgrounds/lava-lamp-bg.json")}
+          autoPlay
+          loop
+          style={styles.backgroundAnimation}
         />
+      </View>
 
+      <Header
+        logoSource={require("@/assets/images/flow.png")}
+        onRightIconPress={handleRightIconPress}
+      />
+      <ScrollView style={styles.scrollViewContainer}>
         <View style={styles.greetingContainer}>
           <Text style={styles.greetingText}>Morning, {name}.</Text>
         </View>
@@ -233,8 +232,8 @@ export default function HomeScreen() {
           <Text style={styles.greetingText}>Transactions</Text>
           <Text style={styles.greetingText}>Transactions</Text>
         </>
-      </View>
-    </ScrollView>
+      </ScrollView>
+    </View>
   );
 }
 
@@ -243,14 +242,15 @@ const styles = StyleSheet.create({
     flex: 1,
     justifyContent: "flex-start",
     alignItems: "flex-start",
-    backgroundColor: "#fff",
+    backgroundColor: "#FFF9F2",
     position: "relative",
+    paddingTop: 120,
   },
   scrollViewContainer: {
-    flex: 1,
+    paddingBottom: 20,
   },
   backgroundAnimation: {
-    position: "absolute",
+    position: "relative",
     top: 0,
     left: 0,
     width: "100%",
@@ -269,7 +269,7 @@ const styles = StyleSheet.create({
     padding: 10,
   },
   greetingContainer: {
-    marginTop: 170,
+    marginTop: 50,
     alignItems: "flex-start",
     width: "100%",
   },
@@ -383,7 +383,7 @@ const styles = StyleSheet.create({
     overflow: "hidden",
   },
   widget: {
-    backgroundColor: "#F5F5F5",
+    backgroundColor: "#fff",
     paddingVertical: 10,
     paddingHorizontal: 15,
     borderRadius: 12,
