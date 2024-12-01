@@ -4,64 +4,93 @@ import {
   View,
   Text,
   TouchableOpacity,
-  Button,
+  FlatList,
+  Image,
   Alert,
   TextInput,
   ScrollView,
 } from "react-native";
 import LottieView from "lottie-react-native";
 import Icon from "react-native-vector-icons/FontAwesome";
-import * as Font from "expo-font";
+import * as Font from "expo-font"; // Expo Font API for loading custom fonts
 import AsyncStorage from "@react-native-async-storage/async-storage";
 import ClickableTag from "../../components/ClickableTag";
 import { LinearGradient } from "expo-linear-gradient";
 import Header from "@/components/header";
 import Widget from "../../components/CustomWidget";
+import AppleLogo from "../../assets/logos/apple-logo.png";
+import ShoppingCartLogo from "../../assets/logos/shopping-cart-logo.png";
+import SpotifyLogo from "../../assets/logos/spotify-logo.png";
+import AmazonLogo from "../../assets/logos/amazon-logo.png";
+import PelotonLogo from "../../assets/logos/peloton-logo.png";
+import SkipLogo from "../../assets/logos/skip-logo.png";
+import FlowLogo from "../../assets/images/flow.png";
+import { LogBox } from 'react-native';
 
+LogBox.ignoreAllLogs();
 export default function HomeScreen() {
   const transactions = [
     {
       id: 1,
-      description: "Payment to Vendor A",
-      amount: "$100",
-      date: "2024-11-01",
+      recurring: true,
+      company: "Apple Store",
+      category: "Entertainment",
+      amount: 5.99,
+      logo: "apple-logo.png",
     },
     {
       id: 2,
-      description: "Payment to Vendor B",
-      amount: "$200",
-      date: "2024-11-02",
+      recurring: false,
+      company: "No Frills",
+      category: "Groceries",
+      amount: 52.47,
+      logo: "shopping-cart-logo.png",
     },
     {
       id: 3,
-      description: "Payment to Vendor C",
-      amount: "$150",
-      date: "2024-11-03",
+      recurring: true,
+      company: "Spotify",
+      category: "Entertainment",
+      amount: 12.99,
+      logo: "spotify-logo.png",
     },
     {
       id: 4,
-      description: "Payment to Vendor D",
-      amount: "$250",
-      date: "2024-11-04",
+      recurring: true,
+      company: "Peloton",
+      category: "Fitness",
+      amount: 9.99,
+      logo: "peloton-logo.png",
     },
     {
       id: 5,
-      description: "Payment to Vendor E",
-      amount: "$300",
-      date: "2024-11-05",
+      recurring: false,
+      company: "Skip the Dishes",
+      category: "Delivery",
+      amount: 28.39,
+      logo: "skip-logo.png",
+    },
+    {
+      id: 6,
+      recurring: true,
+      company: "Amazon",
+      category: "Household",
+      amount: 9.99,
+      logo: "amazon-logo.png",
     },
   ];
   const [fontsLoaded, setFontsLoaded] = useState(false);
+  // const [text, setText] = useState("");
 
-  const [text, setText] = useState("");
+  const [filteredTransactions, setFilteredTransactions] = useState(transactions);
 
   const handleChangeText = (inputText) => {
-    setText(inputText);
+    setFilteredTransactions(transactions.filter(
+      (transaction) => transaction.company.toLowerCase().includes(inputText.toLowerCase())
+    ));
   };
 
-  // const filteredTransactions = transactions.filter(transaction =>
-  //   transaction.description.toLowerCase().includes(searchQuery.toLowerCase())
-  // );
+
 
   useEffect(() => {
     Font.loadAsync({
@@ -75,7 +104,6 @@ export default function HomeScreen() {
 
   const handleRightIconPress = () => {
     console.log("Right icon clicked!");
-    clearAsyncStorage(); // for now lol
   };
 
   const handlePress = () => {
@@ -93,22 +121,79 @@ export default function HomeScreen() {
     }
   };
 
-  return (
-    <View style={styles.container}>
-      <View style={styles.lottieContainer}>
-        <LottieView
-          source={require("../../assets/backgrounds/lava-lamp-bg.json")}
-          autoPlay
-          loop
-          style={styles.backgroundAnimation}
-        />
+  const renderItem = ({ item }) => {
+    let logo;
+    switch (item.logo) {
+      case "apple-logo.png":
+        logo = AppleLogo;
+        break;
+      case "shopping-cart-logo.png":
+        logo = ShoppingCartLogo;
+        break;
+      case "spotify-logo.png":
+        logo = SpotifyLogo;
+        break;
+      case "amazon-logo.png":
+        logo = AmazonLogo;
+        break;
+      case "peloton-logo.png":
+        logo = PelotonLogo;
+        break;
+      case "skip-logo.png":
+        logo = SkipLogo;
+        break;
+      default:
+        logo = null;
+    }
+  
+    return (
+      <View style={{flexDirection: "column", width: "100%"}}>
+        <View style={{ justifyContent: "space-between", flexDirection: "row", marginTop: 12, marginHorizontal: 20, width: "90%" }}>
+          <View style={{ flexDirection: "row" }}>
+            {logo && <Image source={logo} style={{ width: 30, height: 30 }} />}
+            <View style={{ alignItems: "flex-start", marginLeft: 10 }}>
+              <View style={{ justifyContent: "flex-start", flexDirection: "row" }}>
+                <Text style={{ fontFamily: "arial", fontSize: 14, fontWeight: "bold" }}>{item.company}</Text>
+                {item.recurring ? (
+                  <Icon name="repeat" size={14} color="#121212" style={{ marginLeft: 5 }} />
+                ) : null}
+              </View>
+              <Text style={{ color: "#AFAFAF", fontSize: 12, marginTop: 5 }}>{item.category}</Text>
+            </View>
+          </View>
+          <View style={{ justifyContent: "flex-end", flexDirection: "row" }}>
+            <Text style={{ fontFamily: "arial", marginTop: 10, marginRight: 10 }}>-${item.amount}</Text>
+            {/* <Icon name="bars" style={{ marginTop: 11, marginRight: 10 }} /> */}
+          </View>
+        </View>
+        {item.id != transactions.length && 
+        <View style={{flex: 1, justifyContent: 'center', alignItems: 'center', marginTop: 10}}>
+          <View style={{width: '90%', height: 1, backgroundColor: '#888888'}}/>
+        </View>}
       </View>
+    );
+  };
+  
 
-      <Header
-        logoSource={require("@/assets/images/flow.png")}
-        onRightIconPress={handleRightIconPress}
-      />
-      <ScrollView style={styles.scrollViewContainer}>
+
+  return (
+    <ScrollView style={styles.scrollViewContainer}>
+      {/* Wrap content with ScrollView */}
+      <View style={styles.container}>
+        <View style={styles.lottieContainer}>
+          <LottieView
+            source={require("../../assets/backgrounds/lava-lamp-bg.json")}
+            autoPlay
+            loop
+            style={styles.backgroundAnimation}
+          />
+        </View>
+
+        <Header
+          logoSource={require("@/assets/images/flow.png")}
+          onRightIconPress={handleRightIconPress}
+        />
+
         <View style={styles.greetingContainer}>
           <Text style={styles.greetingText}>Morning, {name}.</Text>
         </View>
@@ -152,8 +237,7 @@ export default function HomeScreen() {
             <View style={[styles.widget]}>
               <Text style={styles.reminderWidgetText}>
                 <Text style={styles.widgetMoneyText}>$23.46</Text> left{"\n"}
-                <Text style={{ fontSize: 14 }}>
-                  in{" "}
+                <Text style={{ fontSize: 14 }}>in{" "}
                   <ClickableTag style={{ backgroundColor: "#DAD8F4" }}>
                     <Text style={{ color: "#525278" }}>non-essentials</Text>
                   </ClickableTag>
@@ -191,7 +275,7 @@ export default function HomeScreen() {
             <Text
               style={{
                 fontFamily: "arial",
-                color: "#88888",
+                color: "#888888",
                 textDecorationLine: "underline",
                 marginTop: 10,
                 marginLeft: "auto",
@@ -206,34 +290,19 @@ export default function HomeScreen() {
           <TextInput
             style={styles.textInput}
             placeholder="Search for a past transaction"
-            onChange={handleChangeText}
+            placeholderTextColor="#888888"
+            onChangeText={handleChangeText}
           />
-          {/* <TouchableOpacity onPress={()=>{}} style={styles.iconButton}> */}
-          {/* <View style={{position: 'absolute', justifyContent: 'flex-end', marginRight: 50}}>
-            <Icon name="search" size={20} color="#999" style={styles.iconButton}/>
-          </View> */}
-          {/* </TouchableOpacity> */}
+          <FlatList
+            data={filteredTransactions}
+            renderItem={renderItem}
+            keyExtractor={(item) => item.id.toString()}
+            contentContainerStyle={{ width: '100%' }}
+          />
         </View>
-        {/* <Text style={styles.text}>You typed: {text}</Text> */}
+        </View>
 
-        <>
-          <Text style={styles.greetingText}>Transactions</Text>
-          <Text style={styles.greetingText}>Transactions</Text>
-          <Text style={styles.greetingText}>Transactions</Text>
-          <Text style={styles.greetingText}>Transactions</Text>
-          <Text style={styles.greetingText}>Transactions</Text>
-          <Text style={styles.greetingText}>Transactions</Text>
-          <Text style={styles.greetingText}>Transactions</Text>
-          <Text style={styles.greetingText}>Transactions</Text>
-          <Text style={styles.greetingText}>Transactions</Text>
-          <Text style={styles.greetingText}>Transactions</Text>
-          <Text style={styles.greetingText}>Transactions</Text>
-          <Text style={styles.greetingText}>Transactions</Text>
-          <Text style={styles.greetingText}>Transactions</Text>
-          <Text style={styles.greetingText}>Transactions</Text>
-        </>
-      </ScrollView>
-    </View>
+    </ScrollView>
   );
 }
 
@@ -242,15 +311,14 @@ const styles = StyleSheet.create({
     flex: 1,
     justifyContent: "flex-start",
     alignItems: "flex-start",
-    backgroundColor: "#FFF9F2",
+    backgroundColor: "#fff",
     position: "relative",
-    paddingTop: 120,
   },
   scrollViewContainer: {
-    paddingBottom: 20,
+    flex: 1,
   },
   backgroundAnimation: {
-    position: "relative",
+    position: "absolute",
     top: 0,
     left: 0,
     width: "100%",
@@ -269,7 +337,7 @@ const styles = StyleSheet.create({
     padding: 10,
   },
   greetingContainer: {
-    marginTop: 50,
+    marginTop: 170,
     alignItems: "flex-start",
     width: "100%",
   },
@@ -383,7 +451,7 @@ const styles = StyleSheet.create({
     overflow: "hidden",
   },
   widget: {
-    backgroundColor: "#fff",
+    backgroundColor: "#F5F5F5",
     paddingVertical: 10,
     paddingHorizontal: 15,
     borderRadius: 12,
@@ -398,10 +466,11 @@ const styles = StyleSheet.create({
     color: "#333",
   },
   searchContainer: {
-    flexDirection: "row", // To position the TextInput and icon button horizontally
+    flexDirection: "column", // To position the TextInput and icon button horizontally
     alignItems: "center", // Align the items in the center vertically
     width: "100%", // Or set a custom width
     position: "relative", // This is to position the button inside the TextInput
+    paddingHorizontal: 0,
   },
   textInput: {
     height: 40,
@@ -409,11 +478,40 @@ const styles = StyleSheet.create({
     borderColor: "#888888",
     borderWidth: 1,
     borderRadius: 25,
-    paddingLeft: 10,
+    paddingLeft: 20,
     paddingRight: 30,
     marginLeft: 20,
     marginTop: 24,
     outlineColor: "transparent",
   },
+  transactionList: {
+    paddingHorizontal: 20,
+  },
+  transactionItem: {
+    backgroundColor: "#F5F5F5",
+    padding: 15,
+    marginVertical: 8,
+    borderRadius: 10,
+    elevation: 3,
+    width: "100%",
+  },
+  transactionDescription: {
+    fontSize: 16,
+    color: "#1E1E2D",
+    fontWeight: "bold",
+  },
+  transactionAmount: {
+    fontSize: 14,
+    color: "#1E1E2D",
+    marginTop: 5,
+  },
+  transactionDate: {
+    fontSize: 12,
+    color: "#888888",
+    marginTop: 2,
+  },
+  itemContainer: {
+    width: '100%',
+  }
 });
 
