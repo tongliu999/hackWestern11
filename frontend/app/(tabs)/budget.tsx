@@ -8,6 +8,7 @@ import Header from "@/components/header";
 import ProgressBar from "@/components/progressBar";
 import ClickableTag from "@/components/ClickableTag";
 import FontAwesome6 from "@expo/vector-icons/FontAwesome6";
+import Feather from "@expo/vector-icons/Feather";
 
 export default function BudgetScreen() {
   const handleRightIconPress = () => {
@@ -169,9 +170,73 @@ export default function BudgetScreen() {
             >
               left in{" "}
             </Text>
+            <ClickableTag style={{ backgroundColor: "#E2CFDE" }}>
+              <Text style={{ color: "#525278" }}>essentials</Text>
+            </ClickableTag>
+          </View>
+
+          <View style={[styles.frameContainer, { marginTop: 20 }]}>
+            <View style={styles.infoRow}>
+              <Ionicons
+                name="information-circle-outline"
+                size={15}
+                color="black"
+              />
+              <Text style={styles.frameText}>
+                There is only 6 days left in the month. All leftover funds will
+                be transferred to short-term or long-term savings if not
+                re-allocated to another fund.
+              </Text>
+            </View>
+          </View>
+          <View style={styles.optionsContainer}>
+            <View style={styles.option}>
+              <Text style={styles.optionText}>Keep it for savings</Text>
+            </View>
+            <View style={styles.optionWithIcon}>
+              <Text style={styles.optionText}>Re-allocate now</Text>
+              <Feather name="arrow-up-right" size={15} color="#000" />
+            </View>
+          </View>
+
+          <View style={[styles.textContainer, { marginTop: 40 }]}>
+            <Text style={{ fontFamily: "bricolage-grotesque", fontSize: 19 }}>
+              $23.46{" "}
+            </Text>
+            <Text
+              style={{
+                fontSize: 19,
+              }}
+            >
+              left in{" "}
+            </Text>
             <ClickableTag style={{ backgroundColor: "#DAD8F4" }}>
               <Text style={{ color: "#525278" }}>non-essentials</Text>
             </ClickableTag>
+          </View>
+
+          <View style={[styles.frameContainer, { marginTop: 20 }]}>
+            <View style={styles.infoRow}>
+              <Ionicons
+                name="information-circle-outline"
+                size={15}
+                color="black"
+              />
+              <Text style={styles.frameText}>
+                There is only 6 days left in the month. All leftover funds will
+                be transferred to short-term or long-term savings if not
+                re-allocated to another fund.
+              </Text>
+            </View>
+          </View>
+          <View style={styles.optionsContainer}>
+            <View style={styles.option}>
+              <Text style={styles.optionText}>Keep it for savings</Text>
+            </View>
+            <View style={styles.optionWithIcon}>
+              <Text style={styles.optionText}>Re-allocate now</Text>
+              <Feather name="arrow-up-right" size={15} color="#000" />
+            </View>
           </View>
         </View>
       </ScrollView>
@@ -181,7 +246,7 @@ export default function BudgetScreen() {
 
 const styles = StyleSheet.create({
   scrollContentContainer: {
-    paddingBottom: 300,
+    paddingBottom: 150,
   },
   parentContainer: {
     flex: 1,
@@ -310,7 +375,7 @@ const styles = StyleSheet.create({
   },
   infoRow: {
     flexDirection: "row",
-    alignItems: "center",
+    alignItems: "flex-start",
     gap: 8,
   },
   transactionText: {
@@ -334,6 +399,57 @@ const styles = StyleSheet.create({
   },
   dueLaterText: {
     color: "#8b9197",
+  },
+  frameContainer: {
+    gap: 10,
+    padding: 12,
+    backgroundColor: "#fff",
+    borderRadius: 12,
+    borderWidth: 1,
+    borderColor: "#f0f0f0",
+    flexDirection: "column",
+  },
+  frameText: {
+    fontSize: 14,
+    fontFamily: "Bricolage Grotesque",
+    textAlign: "left",
+    flexWrap: "wrap",
+    flexShrink: 1,
+    width: "100%",
+  },
+  optionsContainer: {
+    flexDirection: "row",
+    width: "100%",
+    backgroundColor: "#f9f9f9",
+    marginTop: -5,
+  },
+  option: {
+    flex: 1,
+    justifyContent: "center",
+    alignItems: "center",
+    paddingVertical: 15,
+    backgroundColor: "#ffffff",
+    borderWidth: 1,
+    borderColor: "#e0e0e0",
+    borderTopLeftRadius: 12,
+    borderBottomLeftRadius: 12,
+  },
+  optionWithIcon: {
+    flex: 1,
+    flexDirection: "row",
+    justifyContent: "space-between",
+    alignItems: "center",
+    paddingHorizontal: 16,
+    paddingVertical: 15,
+    backgroundColor: "#ffffff",
+    borderWidth: 1,
+    borderColor: "#e0e0e0",
+    borderTopRightRadius: 12,
+    borderBottomRightRadius: 12,
+  },
+  optionText: {
+    fontSize: 14,
+    fontFamily: "Bricolage Grotesque",
   },
 });
 
