@@ -164,23 +164,23 @@ export default function SubscriptionsScreen() {
             <Text style={styles.header}>Your Subscriptions</Text>
           </View>
           <SubscriptionInsight
-            title="Peloton"
+            title="Netflix"
             amount="$30.00"
             subtitle1="App+"
             subtitle2="Monthly"
             description="Billing occurs today."
             iconSource="checkmark-circle-outline"
-            onPress={() => console.log("More pressed!")}
+            onPress={() => handleCardPress("Netflix", "premium")}
             iconBackgroundColor="#ccf0d6"
           />
           <SubscriptionInsight
-            title="Goodlife Fitness"
+            title="GoodLife Fitness"
             amount="$70.00"
             subtitle1="Basic Plan"
             subtitle2="Monthly"
             description="Next Billing is tomorrow."
             iconSource="checkmark-circle-outline"
-            onPress={() => console.log("More pressed!")}
+            onPress={() => handleCardPress("GoodLife", "Member+")}
             iconBackgroundColor="#ccf0d6"
           />
           <SubscriptionInsight
@@ -190,10 +190,10 @@ export default function SubscriptionsScreen() {
             subtitle2="Monthly"
             description="Trial ends and billing occurs in 7 days."
             iconSource="checkmark-circle-outline"
-            onPress={() => console.log("More pressed!")}
+            onPress={() => handleCardPress("Adobe", "express")}
             iconBackgroundColor="#ccf0d6"
           />
-          <SubscriptionInsight
+          {/* <SubscriptionInsight
             title="Uber"
             amount="$9.99"
             subtitle1="Uber One"
@@ -202,7 +202,7 @@ export default function SubscriptionsScreen() {
             iconSource="remove-circle-outline"
             onPress={() => console.log("More pressed!")}
             iconBackgroundColor="#EEECDA"
-          />
+          /> */}
         </View>
 
         <View
