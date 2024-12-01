@@ -13,6 +13,7 @@ import {
 } from "react-native";
 import { Formik } from "formik";
 import * as Yup from "yup";
+import FontAwesome from "@expo/vector-icons/FontAwesome";
 
 // Custom Styles
 const styles = StyleSheet.create({
@@ -214,7 +215,7 @@ const IntroForm: React.FC<IntroFormProps> = ({ onSubmit }) => {
               style={styles.goButton}
               onPress={() => setPage(1)}
             >
-              <Text style={styles.createAccount}>Go</Text>
+              <Text style={styles.createAccount}>Start</Text>
             </TouchableOpacity>
           </View>
         );
@@ -291,7 +292,7 @@ const IntroForm: React.FC<IntroFormProps> = ({ onSubmit }) => {
             <Text style={styles.fieldTitle}>Employment Status</Text>
             <TextInput
               style={styles.input}
-              placeholder="Your Employment Status"
+              placeholder="Student, Part-time, Full-time, etc."
               value={formik.values.employmentStatus.toString()}
               onChangeText={formik.handleChange("employmentStatus")}
               onBlur={formik.handleBlur("employmentStatus")}
@@ -330,7 +331,7 @@ const IntroForm: React.FC<IntroFormProps> = ({ onSubmit }) => {
             <Text style={styles.fieldTitle}>Title your goal</Text>
             <TextInput
               style={styles.input}
-              placeholder="Your Goal"
+              placeholder="e.g. Graduating debt-free"
               value={formik.values.goal.toString()}
               onChangeText={formik.handleChange("goal")}
               onBlur={formik.handleBlur("goal")}
@@ -339,14 +340,22 @@ const IntroForm: React.FC<IntroFormProps> = ({ onSubmit }) => {
               <Text style={styles.errorText}>{formik.errors.goal}</Text>
             )}
             <Text style={styles.fieldTitle}>Monetary Value</Text>
+
+            <FontAwesome
+              name="dollar"
+              size={15}
+              color="black"
+              style={{ position: "absolute", marginTop: 305, marginLeft: 30 }}
+            />
             <TextInput
-              style={styles.input}
-              placeholder="Your Goal Monetary Value"
+              style={[styles.input, { paddingLeft: 20 }]}
+              placeholder="100,000"
               value={formik.values.goalMonetaryValue.toString()}
               onChangeText={formik.handleChange("goalMonetaryValue")}
               onBlur={formik.handleBlur("goalMonetaryValue")}
               keyboardType="numeric"
             />
+
             {formik.touched.goalMonetaryValue &&
               formik.errors.goalMonetaryValue && (
                 <Text style={styles.errorText}>
@@ -380,9 +389,15 @@ const IntroForm: React.FC<IntroFormProps> = ({ onSubmit }) => {
             <Text style={styles.pageTitle}>
               Please provide your fixed expenses.
             </Text>
+            <FontAwesome
+              name="dollar"
+              size={15}
+              color="black"
+              style={{ position: "absolute", marginTop: 194, marginLeft: 30 }}
+            />
             <TextInput
-              style={styles.input}
-              placeholder="Your Occupation"
+              style={[styles.input, { paddingLeft: 20 }]}
+              placeholder="Your fixed expenses"
               value={formik.values.occupation}
               onChangeText={formik.handleChange("occupation")}
               onBlur={formik.handleBlur("occupation")}
@@ -404,8 +419,14 @@ const IntroForm: React.FC<IntroFormProps> = ({ onSubmit }) => {
             <Text style={styles.pageTitle}>
               Please provide your income and/or assets.
             </Text>
+            <FontAwesome
+              name="dollar"
+              size={15}
+              color="black"
+              style={{ position: "absolute", marginTop: 194, marginLeft: 30 }}
+            />
             <TextInput
-              style={styles.input}
+              style={[styles.input, { paddingLeft: 20 }]}
               placeholder="Your Interests"
               value={formik.values.interests}
               onChangeText={formik.handleChange("interests")}
@@ -432,12 +453,11 @@ const IntroForm: React.FC<IntroFormProps> = ({ onSubmit }) => {
             <Text>Please review your information</Text>
 
             <TextInput
-              style={styles.input}
+              style={[styles.input, { marginTop: 10 }]}
               placeholder="Your Bank"
               value={formik.values.bank}
               onChangeText={formik.handleChange("bank")}
               onBlur={formik.handleBlur("bank")}
-              multiline
             />
             {formik.touched.bank && formik.errors.bank && (
               <Text style={styles.errorText}>{formik.errors.bank}</Text>
