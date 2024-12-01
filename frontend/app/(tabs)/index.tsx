@@ -94,7 +94,6 @@ export default function HomeScreen() {
 
   return (
     <ScrollView style={styles.scrollViewContainer}>
-      {" "}
       {/* Wrap content with ScrollView */}
       <View style={styles.container}>
         <View style={styles.lottieContainer}>
