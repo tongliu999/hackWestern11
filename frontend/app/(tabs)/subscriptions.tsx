@@ -31,11 +31,11 @@ export default function SubscriptionsScreen() {
   };
   
   const sendPostRequest = async () => {
-    const url = '';
+    const url = 'https://general-runtime.voiceflow.com/state/user/tong/interact';
     
     const headers = {
       'Content-Type': 'application/json',
-      Authorization: '',
+      Authorization: 'VF.DM.674b2d2b7151fc8271b56928.I31WIKaUAwb6uaG6',
       versionID: 'production',
       Accept: 'application/json',
     };
@@ -135,13 +135,13 @@ export default function SubscriptionsScreen() {
             iconBackgroundColor="#EEECDA"
           />
           <SubscriptionInsight
-            title="Skip the Dishes"
+            title="SkipTheDishes"
             amount="$9.99"
             subtitle1="Skip+"
             subtitle2="Monthly"
             description="Consider potentially redundant subscriptions between Skip+ and UberOne."
             iconSource="remove-circle-outline"
-            onPress={() => handleCardPress("Skip the Dishes", "skip+")}
+            onPress={() => handleCardPress("SkipTheDishes", "skip+")}
             iconBackgroundColor="#EEECDA"
           />
           <SubscriptionInsight
@@ -161,23 +161,23 @@ export default function SubscriptionsScreen() {
             <Text style={styles.header}>Your Subscriptions</Text>
           </View>
           <SubscriptionInsight
-            title="Peloton"
+            title="Netflix"
             amount="$30.00"
             subtitle1="App+"
             subtitle2="Monthly"
             description="Billing occurs today."
             iconSource="checkmark-circle-outline"
-            onPress={() => console.log("More pressed!")}
+            onPress={() => handleCardPress("Netflix", "premium")}
             iconBackgroundColor="#ccf0d6"
           />
           <SubscriptionInsight
-            title="Goodlife Fitness"
+            title="GoodLife Fitness"
             amount="$70.00"
             subtitle1="Basic Plan"
             subtitle2="Monthly"
             description="Next Billing is tomorrow."
             iconSource="checkmark-circle-outline"
-            onPress={() => console.log("More pressed!")}
+            onPress={() => handleCardPress("GoodLife", "Member+")}
             iconBackgroundColor="#ccf0d6"
           />
           <SubscriptionInsight
@@ -187,10 +187,10 @@ export default function SubscriptionsScreen() {
             subtitle2="Monthly"
             description="Trial ends and billing occurs in 7 days."
             iconSource="checkmark-circle-outline"
-            onPress={() => console.log("More pressed!")}
+            onPress={() => handleCardPress("Adobe", "express")}
             iconBackgroundColor="#ccf0d6"
           />
-          <SubscriptionInsight
+          {/* <SubscriptionInsight
             title="Uber"
             amount="$9.99"
             subtitle1="Uber One"
@@ -199,7 +199,7 @@ export default function SubscriptionsScreen() {
             iconSource="remove-circle-outline"
             onPress={() => console.log("More pressed!")}
             iconBackgroundColor="#EEECDA"
-          />
+          /> */}
         </View>
 
         <View style={{ flex: 1, justifyContent: 'center', alignItems: 'center'}}>
