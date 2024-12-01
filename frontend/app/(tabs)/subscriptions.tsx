@@ -1,4 +1,4 @@
-import { StyleSheet, Image, Platform } from "react-native";
+import { StyleSheet, Image, Platform, View } from "react-native";
 
 import { Collapsible } from "@/components/Collapsible";
 import { ExternalLink } from "@/components/ExternalLink";
@@ -6,20 +6,20 @@ import ParallaxScrollView from "@/components/ParallaxScrollView";
 import { ThemedText } from "@/components/ThemedText";
 import { ThemedView } from "@/components/ThemedView";
 import { IconSymbol } from "@/components/ui/IconSymbol";
+import Header from "@/components/header";
 
 export default function SubscriptionsScreen() {
+  const handleRightIconPress = () => {
+    console.log("Right icon clicked!");
+  };
   return (
-    <ParallaxScrollView
-      headerBackgroundColor={{ light: "#D0D0D0", dark: "#353636" }}
-      headerImage={
-        <IconSymbol
-          size={310}
-          color="#808080"
-          name="chevron.left.forwardslash.chevron.right"
-          style={styles.headerImage}
-        />
-      }
-    >
+    <View style={styles.container}>
+      {/* Navbar with Logo and Icon */}
+      <Header
+        logoSource={require("@/assets/images/flow.png")}
+        onRightIconPress={handleRightIconPress}
+      />
+
       <ThemedView style={styles.titleContainer}>
         <ThemedText type="title">Subscriptions</ThemedText>
       </ThemedView>
@@ -111,11 +111,19 @@ export default function SubscriptionsScreen() {
           ),
         })}
       </Collapsible>
-    </ParallaxScrollView>
+    </View>
   );
 }
 
 const styles = StyleSheet.create({
+  container: {
+    flex: 1,
+    justifyContent: "center",
+    alignItems: "center",
+    backgroundColor: "#fff",
+    position: "relative",
+    fontFamily: "bricolage-grotesque",
+  },
   headerImage: {
     color: "#808080",
     bottom: -90,

@@ -12,6 +12,7 @@ import Icon from "react-native-vector-icons/FontAwesome";
 import * as Font from "expo-font"; // Expo Font API for loading custom fonts
 import AsyncStorage from "@react-native-async-storage/async-storage";
 import Widget from "../../components/CustomWidget"; // Import the custom Widget component
+import Header from "@/components/header";
 
 export default function HomeScreen() {
   const [fontsLoaded, setFontsLoaded] = useState(false);
@@ -57,17 +58,10 @@ export default function HomeScreen() {
       </View>
 
       {/* Navbar with Logo and Icon */}
-      <View style={styles.navbar}>
-        <TouchableOpacity style={styles.logoContainer}>
-          <Text style={styles.logoText}>Logo</Text>
-        </TouchableOpacity>
-        <TouchableOpacity
-          onPress={handleRightIconPress}
-          style={styles.iconContainer}
-        >
-          <Icon name="bell-o" size={20} color="#121212" />
-        </TouchableOpacity>
-      </View>
+      <Header
+        logoSource={require("@/assets/images/flow.png")}
+        onRightIconPress={handleRightIconPress}
+      />
 
       <View style={styles.greetingContainer}>
         <Text style={styles.greetingText}>Morning, {name}.</Text>
@@ -132,19 +126,6 @@ const styles = StyleSheet.create({
     width: "100%",
     height: "100%",
     opacity: 0.3,
-  },
-  navbar: {
-    position: "absolute",
-    top: 20,
-    left: 0,
-    right: 0,
-    height: 60,
-    backgroundColor: "transparent",
-    flexDirection: "row",
-    alignItems: "center",
-    justifyContent: "space-between",
-    paddingHorizontal: 15,
-    zIndex: 2,
   },
   logoContainer: {
     flex: 1,
