@@ -33,7 +33,7 @@ const SubscriptionInsight: React.FC<SubscriptionInsightProps> = ({
     console.log("Card pressed!");
   };
   return (
-    <Pressable style={styles.cardContainer} onPress={handlePress}>
+    <Pressable style={styles.cardContainer} onPress={onPress}>
       <View style={styles.cardContent}>
         <View style={styles.cardHeader}>
           <View style={styles.iconContainer}>
