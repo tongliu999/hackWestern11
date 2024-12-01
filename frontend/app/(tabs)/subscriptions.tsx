@@ -201,22 +201,31 @@ export default function SubscriptionsScreen() {
             iconBackgroundColor="#EEECDA"
           />
         </View>
-        <View style={{justifyContent: "center", alignItems: "center"}}>
-          <Modal
-            visible={isVisible}
-            transparent={true}
-            animationType="slide"
-            onRequestClose={toggleModal}
-            style={{position: "absolute"}}
-          >
-            <TouchableOpacity>
-              <Text onPress={handleYesPress}>YES</Text>
-            </TouchableOpacity>
-            <TouchableOpacity onPress={toggleModal}>
-              <Text>NO</Text>
-            </TouchableOpacity>
-          </Modal>
-        </View>
+
+        <View style={{ flex: 1, justifyContent: 'center', alignItems: 'center'}}>
+        <Modal
+          visible={isVisible}
+          transparent={true}
+          animationType="slide"
+          onRequestClose={toggleModal}
+        >
+          <View style={styles.modalOverlay}>
+            <View style={styles.modalContainer}>
+                <Text style={{textAlign: "left"}}>
+                  <Text style={{fontWeight: "bold"}}>Are you sure </Text>that you want to convert your standard monthly subscription into an annual student subscription?
+                </Text>
+              <View style={styles.buttonContainer}>
+                <TouchableOpacity onPress={toggleModal} style={styles.noButton}>
+                  <Text>NO</Text>
+                </TouchableOpacity>
+                <TouchableOpacity onPress={handleYesPress} style={styles.yesButton}>
+                  <Text style={{color: "white"}}>YES</Text>
+                </TouchableOpacity>
+              </View>
+            </View>
+          </View>
+        </Modal>
+      </View>
       </ScrollView>
     </View>
   );
@@ -307,6 +316,46 @@ const styles = StyleSheet.create({
   header: {
     fontSize: 24,
     fontFamily: "bricolage-grotesque",
+  },
+  modalOverlay: {
+    flex: 1,
+    justifyContent: 'center',
+    alignItems: 'center',
+    backgroundColor: 'rgba(0, 0, 0, 0.5)',
+  },
+  modalContainer: {
+    width: 300,
+    height: 165,
+    backgroundColor: '#FFF9F2',
+    borderRadius: 20,
+    borderWidth: 2,
+    borderColor: '#e6e6e6',
+    padding: 20,
+    justifyContent: 'flex-start',
+    alignItems: 'stretch',
+  },
+  buttonContainer: {
+    marginTop: 'auto', // Pushes the buttons to the bottom of the modal
+    flexDirection: 'row',
+    width: '100%',
+    marginLeft: -20,
+    marginBottom: -22,
+  },
+  noButton: {
+    width: 150,
+    height: 49,
+    backgroundColor: '#EFEFEF',
+    justifyContent: 'center',
+    alignItems: 'center',
+    borderBottomLeftRadius: 20,
+  },
+  yesButton: {
+    width: 150,
+    height: 49,
+    backgroundColor: '#988269',
+    justifyContent: 'center',
+    alignItems: 'center',
+    borderBottomRightRadius: 20,
   },
 });
 
