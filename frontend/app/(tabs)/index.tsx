@@ -1,5 +1,14 @@
 import React, { useEffect, useState } from "react";
-import { StyleSheet, View, Text, TextInput, TouchableOpacity, Alert, ScrollView } from "react-native";  // Import ScrollView
+import {
+  StyleSheet,
+  View,
+  Text,
+  TouchableOpacity,
+  Button,
+  Alert,
+  TextInput,
+  ScrollView
+} from "react-native";
 import LottieView from "lottie-react-native";
 import Icon from "react-native-vector-icons/FontAwesome";
 import * as Font from "expo-font"; // Expo Font API for loading custom fonts
@@ -204,6 +213,7 @@ const styles = StyleSheet.create({
     left: 0,
     width: "100%",
     height: "100%",
+    opacity: 0.3,
   },
   navbar: {
     position: "absolute",
