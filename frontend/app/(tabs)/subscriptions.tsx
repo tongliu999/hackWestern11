@@ -5,15 +5,70 @@ import {
   View,
   ScrollView,
   Text,
+  Modal,
+  Touchable,
+  TouchableOpacity,
 } from "react-native";
 import { LinearGradient } from "expo-linear-gradient";
 import Header from "@/components/header";
 import SubscriptionInsight from "@/components/subscriptionInsight";
+import { useState } from "react";
+import axios from 'axios';
 
 export default function SubscriptionsScreen() {
   const handleRightIconPress = () => {
     console.log("Right icon clicked!");
   };
+
+  const [isVisible, setIsVisible] = useState(false);
+  const [company, setCompany] = useState("");
+  const [planName, setPlanName] = useState("");
+
+  // Toggle function to open/close the modal
+  const toggleModal = () => {
+    setIsVisible(!isVisible);
+    console.log(isVisible);
+  };
+  
+  const sendPostRequest = async () => {
+    const url = '';
+    
+    const headers = {
+      'Content-Type': 'application/json',
+      Authorization: '',
+      versionID: 'production',
+      Accept: 'application/json',
+    };
+  
+    const body = {
+      request: {
+        type: 'text',
+        payload: `I'd like to change my subscription plan from ${company} to the ${planName}.`,
+      },
+    };
+  
+    try {
+      const response = await axios.post(url, body, { headers });
+      console.log('Response:', response.data);
+    } catch (error) {
+      console.error('Error:', error.response ? error.response.data : error.message);
+    }
+  };
+
+  const handleCardPress = (companyName, subscriptionTitle) => {
+    // Handle the press event and log the subscription title
+    console.log(`${subscriptionTitle} card pressed!`);
+    setCompany(companyName);
+    setPlanName(subscriptionTitle);
+    toggleModal(); // Open/close modal or any other action
+  };
+
+  const handleYesPress = () => {
+    sendPostRequest();
+    toggleModal();
+  }
+  
+
   return (
     <View style={styles.parentContainer}>
       {/* Navbar with Logo and Icon */}
@@ -66,7 +121,7 @@ export default function SubscriptionsScreen() {
             subtitle2="Monthly"
             description="Can be optimized to save 58% annually as a student."
             iconSource="alert-circle-outline"
-            onPress={() => console.log("More pressed!")}
+            onPress={() => handleCardPress("Amazon Prime", "prime")}
             iconBackgroundColor="#EEDBDA"
           />
           <SubscriptionInsight
@@ -76,7 +131,7 @@ export default function SubscriptionsScreen() {
             subtitle2="Monthly"
             description="Consider your potentially redundant subscriptions between Uber One and Skip+."
             iconSource="remove-circle-outline"
-            onPress={() => console.log("More pressed!")}
+            onPress={() => handleCardPress("Uber One", "eatsPass")}
             iconBackgroundColor="#EEECDA"
           />
           <SubscriptionInsight
@@ -86,19 +141,35 @@ export default function SubscriptionsScreen() {
             subtitle2="Monthly"
             description="Consider potentially redundant subscriptions between Skip+ and UberOne."
             iconSource="remove-circle-outline"
-            onPress={() => console.log("More pressed!")}
+            onPress={() => handleCardPress("Skip the Dishes", "skip+")}
             iconBackgroundColor="#EEECDA"
           />
           <SubscriptionInsight
-            title="Peloton"
+            title="LA Fitness"
             amount="$30.00"
             subtitle1="Standard"
             subtitle2="Monthly"
-            description="Are you still using Peloton regularly? This is your second most expensive subscription. "
+            description="Are you still using LA Fitness regularly? This is your second most expensive subscription. "
             iconSource="remove-circle-outline"
-            onPress={() => console.log("More pressed!")}
+            onPress={() => handleCardPress("LA Fitness", "Annual")}
             iconBackgroundColor="#EEECDA"
           />
+        </View>
+        <View style={{justifyContent: "center", alignItems: "center"}}>
+          <Modal
+            visible={isVisible}
+            transparent={true}
+            animationType="slide"
+            onRequestClose={toggleModal}
+            style={{position: "absolute"}}
+          >
+            <TouchableOpacity>
+              <Text onPress={handleYesPress}>YES</Text>
+            </TouchableOpacity>
+            <TouchableOpacity onPress={toggleModal}>
+              <Text>NO</Text>
+            </TouchableOpacity>
+          </Modal>
         </View>
       </ScrollView>
     </View>
