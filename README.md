@@ -32,5 +32,3 @@ Students are in a unique place where they are under the constant stress of exams
    ```
 
 5. Run the demo by scanning the generated QR code
-
-**Note:** The VoiceFlow API key/URL have been hidden to prevent unauthorized access. If you'd like to model the project, feel free to reach out to us via Github!
