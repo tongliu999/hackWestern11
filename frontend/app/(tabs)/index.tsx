@@ -80,6 +80,7 @@ export default function HomeScreen() {
     },
   ];
   const [fontsLoaded, setFontsLoaded] = useState(false);
+  const [nameLoaded, setNameLoaded] = useState(false);
   // const [text, setText] = useState("");
 
   const [filteredTransactions, setFilteredTransactions] =
@@ -99,20 +100,34 @@ export default function HomeScreen() {
     }).then(() => setFontsLoaded(true));
   }, []);
 
-  if (!fontsLoaded) {
+  const [name, setName] = useState("Tom");
+
+  useEffect(() => {
+    AsyncStorage.getItem("userData").then((value)=>{
+      var obj = JSON.parse(value);
+      setName(obj["firstName"]);
+    }).then(() => {
+      setNameLoaded(true);
+    });
+  }, []);
+
+
+  if (!fontsLoaded || !nameLoaded) {
     return <Text>Loading...</Text>;
   }
 
   const handleRightIconPress = () => {
     console.log("Right icon clicked!");
-    clearAsyncStorage();
+    // clearAsyncStorage();
+    // AsyncStorage.getItem("firstName").then((value) => {
+    //   console.log("Retrieved value:", value);
+    // });
+    console.log(AsyncStorage.getItem("userData").then((value)=>console.log(value)));
   };
 
   const handlePress = () => {
     console.log("Widget clicked!");
   };
-
-  const name = "Tom";
 
   const clearAsyncStorage = async () => {
     try {
