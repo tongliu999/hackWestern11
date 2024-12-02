@@ -8,6 +8,8 @@ Many students can’t rely on budgeting apps for a multitude of reasons, which i
 
 Students are in a unique place where they are under the constant stress of exams, feeding themselves, and attempting to maintain a healthy lifestyle. So, if you need to spend some money to destress, we support you. We built Flow so that it can help plan your future while helping you stretch every dollar to its last.
 
+## Check out our dorahacks submission
+https://dorahacks.io/buidl/20358
 
 ## Get started/try the demo!
 
