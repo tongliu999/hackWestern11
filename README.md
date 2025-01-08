@@ -12,17 +12,17 @@ Students are in a unique place where they are under the constant stress of exams
 
 Some key features that we wanted to include: the ability to save on subscription plans, being able to cancel any subscription plan with the touch of a button, and to also keep track of your finances no matter how erratic your income is. Here’s an example of the features in action:
 
-<iframe width="560" height="315" src="https://www.youtube.com/embed/vBFX6naBOaw?si=3h9DdSgMELDk-dYM" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe>
+### [Demo Link](https://www.youtube.com/watch?v=vBFX6naBOaw)
 
-Feature 1: Viva La Revolution! (Or not?)
+##### Feature 1: Viva La Revolution! (Or not?)
 
-<img src="/frontend/assets/images/stats.png" width=250 height=200>
+<img src="/frontend/assets/images/stats.png" width=250 height=450>
 
 Even the most advanced budgeting apps need to have some key features that allow users to see how much they are spending and to also create plans to save for the future. Our entry survey takes in your income, your expenses, email, and other factors that allows us to generate a quick budget for you to see. We then keep track of your goals and show you your progress to achieving these goals. Keeping in my mind that students often rely on short-term internships to supplement their income, we provide an easy way for users to update any key information that may impact their long-term budget. Additionally, we want to provide users with an easy to understand interface of all their budget breakdowns and how on track they are to meeting their goals.
 
 Feature 2: Cancelling Done Right
 
-<img src="/frontend/assets/images/cancelscreen.png" width=250 height=200>
+<img src="/frontend/assets/images/cancelscreen.png" width=250 height=450>
 
 Money makes the world spin, even more so if you’re a university student. In between your exams, going out, and trying to find time for extracurriculars, we often rely on subscriptions to help make the most of our time. This could include UberEats, SkipTheDishes, or Amazon Prime, I mean most of us want to make the most out of student deals right? More often than not, companies will hide their cancel button behind a disgusting mess of hidden links, clumped websites, or straight up predatory services. Just take a look at our demo!
 
